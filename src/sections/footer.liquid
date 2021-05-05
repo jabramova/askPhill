@@ -1,0 +1,13 @@
+<!-- /sections/footer.liquid -->
+
+<footer class="footer" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer">
+  <div class="container">
+    
+    <div class="text-center">
+      {% include 'footer-payment' %}
+
+      <p class="footer__cpr">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: '/' }}</p>
+    </div>
+  </div>
+</footer>
+

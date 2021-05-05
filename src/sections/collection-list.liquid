@@ -1,0 +1,120 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Collection list" section in the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the collection list section
+  - Collection
+{%- endcomment -%}
+<section class="collection-list" style="background-color: {{ section.settings.bg }}">
+  {% if section.settings.title != blank %}
+    <h2 class="collection-list__title">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {%- assign collection = collections[block.settings.collection] -%}
+
+        <a href="{{ collection.url | default: "#" }}" class="collection-item swiper-slide" {{ block.shopify_attributes }}>
+          {% if collection.image != blank or collection.products.first != blank %}
+            {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+            {%- assign block_image = block.settings.image -%}
+            <div class="collection-item__image">
+            {% if block.settings.image != blank %}
+              {% include 'responsive-image' with
+                image: block_image,
+                max_width: 480,
+                max_height: 480
+              %}
+            {% else %}
+              {% include 'responsive-image' with
+                image: image_object,
+                max_width: 480,
+                max_height: 480
+              %}
+            {% endif %}
+            </div>
+          {% elsif collection == empty %}
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+          {% endif %}
+
+          {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
+          {% if block.settings.custom_title != blank %}
+            <h3 class="collection-item__title">{{  block.settings.custom_title }}</h3>
+          {% else %}
+            <h3 class="collection-item__title">{{ collection.title | default: default_label }}</h3>
+          {% endif %}
+          <button class="collection-item__button" aria-label="View product">{{ section.settings.button_text }}</button>
+        </a>
+      {% endfor %}
+    </div>
+    {% if section.blocks.size > 1 %}
+      <div class="swiper-button-black swiper-button-prev"></div>
+      <div class="swiper-button-black swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div>
+    {% endif %}
+  </div>
+
+
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</section>
+
+{% schema %} {
+  "name": "Collection slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Section background color",
+      "default": "rgb(241, 241, 241)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Experience the power of compression"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "View collection"
+    }
+  ], 
+  "blocks": [
+    {
+      "name": "item",
+      "type": "item", 
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom collection title"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Collection slider",
+        "category": "Collection"
+      }
+    ]
+}
+{% endschema %} 
+
+

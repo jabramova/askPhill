@@ -1,0 +1,46 @@
+.header {
+  background-color: $color-bg;
+  overflow: hidden;
+  &__links {
+    display: flex;
+  }
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__cart {
+    margin-right: 10px;
+    color: $color-body-text;
+    text-decoration: none;
+    font-size: 12px;
+    @media screen and (min-width: $screen-lg){
+      font-size: 14px;
+    } 
+  }
+  &__customer-links {
+    display: flex;
+  }
+  &__customer-item {
+    padding: 0 3px;
+    @media screen and (min-width: $screen-lg){
+      padding: 0 10px;
+    }
+    a {
+      color:  $color-body-text;
+      text-decoration: none;
+      font-size: 12px;
+      @media screen and (min-width: $screen-lg){
+        font-size: 14px;
+      } 
+    }
+  }
+  
+}
+
+.logo-image {
+  width: 130px;
+  @media screen and (min-width: $screen-lg){
+    width: 200px;
+  }
+}

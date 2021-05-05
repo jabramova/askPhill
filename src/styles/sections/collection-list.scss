@@ -1,0 +1,109 @@
+.collection-list {
+  padding: 10vw 0;
+  @media screen and (min-width: $screen-lg){
+    padding: 5vw 0;
+  }
+  &__title {
+    text-align: center;
+    font-size: 4.71333vw;
+    padding-bottom: 8vw;
+    @media screen and (min-width: $screen-lg){
+      font-size: 2.08vw;
+      padding-bottom: 6.9vw;
+    }
+  }
+  // .swiper-wrapper {
+  //   align-items: stretch;
+  // }
+  .swiper-container {
+    padding-bottom: 10vw;
+  }
+  .swiper-slide {
+    height: auto;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  
+   
+    @media screen and (min-width: $screen-lg){
+      display: inline-block;
+      position: absolute;
+      display: block;
+      width: 3vw;
+      height: 3vw;
+      top: 37%;
+      background-color: white;
+      background-size: 0.6vw 1.2vw;
+      &:after {
+        display: block;
+        position: absolute;
+        font-size: 1vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .swiper-button-disabled {
+    display: none;
+  }
+  .swiper-scrollbar {
+    @media screen and (min-width: $screen-lg){
+      display: none;
+    }
+  }
+}
+
+.collection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: $color-body-text;
+  text-align: center;
+  transition: all 0.25s ease;
+  &:hover .collection-item__button {
+    opacity: 1;
+  }
+  &__image {
+    width:  100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__title {
+    text-align: center;
+    font-size: 4vw;
+    letter-spacing: 0.05em;
+    margin-top: 4vw;
+    @media screen and (min-width: $screen-lg){
+      font-size: 0.97vw;
+      margin-top: 1.38vw;
+    }
+  }
+  &__button {
+    border: none;
+    background: #fff;
+    font-size: 2.8vw;
+    padding: 4.8vw 10vw;
+    margin-top: 4vw;
+    cursor: pointer;
+    @media screen and (min-width: $screen-lg){
+      opacity: 0;
+      font-size: 0.83vw;
+      padding: 1.035vw 2.76vw;
+      margin-top: 1.38vw;
+    }
+  }
+} 
+
+.collection-list .swiper-scrollbar {
+  left: auto;
+  margin-left: 8vw;
+  width: calc(84vw);
+  height: 4px;
+}
